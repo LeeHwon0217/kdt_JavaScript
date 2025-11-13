@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 메모장</title>
+  </head>
+  <body>
+    <input type="text" id="noteInput" placeholder="메모 입력" />
+    <button onclick="saveNote()">저장</button>
+
+    <ul id="noteList"></ul>
+
+    <script>
+      let db;
+
+      // 1. IndexedDB 열기 또는 생성
+      // MyNotesDB 이름으로 DB를 생성, 버전이 1
+      // DB가 없을 때 새로 만들고(onupgradeneeded 발생), 있으면 열기(onsuccess)
+      const request = indexedDB.open("MyNotesDB", 1);
+      request.onupgradeneeded = function (e) {
+        // 생성된 데이터베이스 객체
+        db = e.target.result;
+        // notes라는 object store가 없으면 새로 생성
+        if (!db.objectStoreNames.contains("notes")) {
+          // notes 테이블을 생성하고 id를 만들고 1씩 증가하는 값(autoIncrement)을 만들어달라는 의미
+          db.createObjectStore("notes", { keyPath: "id", autoIncrement: true });
+        }
+      };
+
+      request.onsuccess = function (e) {
+        db = e.target.result;
+        // 페이지 로드 시 기존에 저당된 메모들을 화면에 표시
+        displayNotes();
+      };
+
+      // 2. 메모 목록 출력 함수
+      function displayNotes() {
+        const list = document.getElementById("noteList");
+        list.innerHTML = "";
+        const tx = db.transaction("notes", "readonly");
+        const store = tx.objectStore("notes");
+        const request = store.openCursor();
+
+        request.onsuccess = function (e) {
+          const cursor = e.target.result;
+          if (cursor) {
+            const li = document.createElement("li");
+            // Date 객체를 "2025. 11. 13. 오전 11:38:00" 식의 로컬 문자열로 변환
+            li.textContent = `[${cursor.value.created.toLocaleString()}] ${
+              cursor.value.text
+            }`;
+            list.appendChild(li);
+            // 반복문이 없는데, 다시 반복 되는 이유 : cursor.continue(); 이거 때문
+            cursor.continue();
+          }
+        };
+      }
+
+      request.onerror = function () {
+        alert("IndexedDB 열기 실패");
+      };
+
+      // 3. 메모 저장 함수
+      function saveNote() {
+        const input = document.getElementById("noteInput");
+        const text = input.value.trim();
+        if (!text) return;
+
+        // note Object Store에 대해 읽고/쓰는 트랜젝션을 생성
+        const tx = db.transaction("notes", "readwrite");
+        const store = tx.objectStore("notes");
+
+        store.add({ text: text, created: new Date() });
+
+        tx.oncomplete = function () {
+          input.value = "";
+          displayNotes();
+        };
+      }
+    </script>
+  </body>
+</html>

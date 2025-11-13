@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>이 탭에서 방문한 횟수: <span id="counter">0</span>회</h2>
+
+    <script>
+      // 현재 값 불러오기 또는 0으로 시작
+      let count = sessionStorage.getItem("visitCount"); // 없으면 null 저장
+      count = count ? Number(count) + 1 : 1; // 없으면 false + 1이라 false. 따라서 1 저장
+
+      // 저장
+      sessionStorage.setItem("visitCount", count);
+
+      // 화면에 출력
+      document.getElementById("counter").innerText = count;
+    </script>
+  </body>
+</html>

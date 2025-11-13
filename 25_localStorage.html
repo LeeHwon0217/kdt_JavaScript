@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="username" placeholder="이름 입력" />
+    <button onclick="saveName()">저장</button>
+    <p id="welcome"></p>
+
+    <script>
+      function saveName() {
+        const name = document.getElementById("username").value;
+        localStorage.setItem("userName", name);
+        document.getElementById("welcome").innerText = `환영합니다, ${name}님!`;
+      }
+    </script>
+  </body>
+</html>
