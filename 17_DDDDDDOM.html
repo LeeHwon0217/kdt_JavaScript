@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="notice">이 문장은 곧 사라집니다.</p>
+    <button onclick="removeText()">삭제</button>
+
+    <script>
+      function removeText() {
+        document.getElementById("notice").remove();
+      }
+    </script>
+  </body>
+</html>

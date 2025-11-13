@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="original">
+      <p>복제할 내용</p>
+    </div>
+    <script>
+      const original = document.getElementById("original");
+      const clone = original.cloneNode(true); // 깊은 복사
+
+      document.body.appendChild(clone);
+    </script>
+  </body>
+</html>

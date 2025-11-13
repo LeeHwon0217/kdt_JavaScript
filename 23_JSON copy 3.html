@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="nameInput" placeholder="이름 입력" />
+    <input type="number" id="ageInput" placeholder="나이 입력" />
+    <button onclick="saveUser()">저장</button>
+
+    <script>
+      function saveUser() {
+        const name = document.getElementById("nameInput").value;
+        const age = document.getElementById("ageInput").value;
+
+        const user = {
+          name: name,
+          age: Number(age),
+        };
+
+        console.log("JSON 문자열:", JSON.stringify(user));
+      }
+    </script>
+  </body>
+</html>

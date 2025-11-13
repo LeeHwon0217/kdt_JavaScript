@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p class="item">아이템 1</p>
+    <p class="item">아이템 2</p>
+    <button onclick="highlightItems()">강조</button>
+
+    <script>
+      function highlightItems() {
+        const items = document.getElementsByClassName("item"); // 클래스는 여러개여서 elements
+        // 여러개므로 배열로 저장된다. 따라서 for문 사용
+        for (let i = 0; i < items.length; i++) {
+          items[i].style.color = "red";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>이벤트 객체</title>
+    <style>
+      #clickArea {
+        width: 300px;
+        height: 150px;
+        background-color: #f0f0f0;
+        border: 1px solid #aaa;
+        line-height: 150px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>이벤트 객체를 확인해보세요</h2>
+
+    <div id="clickArea">여기를 클릭하세요</div>
+    <input type="text" id="inputBox" placeholder="키보드를 눌러보세요" />
+
+    <script>
+      // 1. 마우스 클릭 시 이벤트 객체 확인
+      document
+        .getElementById("clickArea")
+        .addEventListener("click", function (event) {
+          console.log(event); // 콘솔을 보면 굉장히 많은 정보가 있음을 알 수 있다.
+          alert(
+            `클릭한 위치 (좌표): X=${event.clientX}, Y=${event.clientY}\n` +
+              `이벤트 타입: ${event.type}\n` +
+              `이벤트 대상 ID: ${event.target.id}`
+          );
+        });
+
+      // 2. 키보드 입력 시 이벤트 객체 확인
+      document
+        .getElementById("inputBox")
+        .addEventListener("keydown", function (event) {
+          console.log("입력된 키:", event.key);
+          console.log("코드:", event.code);
+          console.log("이벤트 발생한 요소:", event.target);
+        });
+
+      // 3. 기본 동작 막기 예제 (Enter 키 막기)
+      document
+        .getElementById("inputBox")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault(); // 엔터키 눌러도 form 제출 같은 동작 안 함
+            alert("Enter 키는 막아두었어요!");
+          }
+        });
+    </script>
+  </body>
+</html>

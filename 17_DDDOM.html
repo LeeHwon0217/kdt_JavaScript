@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p class="desc">첫 번째 문장</p>
+    <p class="desc">두 번째 문장</p>
+    <button onclick="updateFirst()">첫 번째만 바꾸기</button>
+
+    <script>
+      function updateFirst() {
+        // querySelector : 단일 요소
+        // querySelectorAll : 여러 요소
+        const items = document.querySelectorAll(".desc"); // .은 클래스(CSS 선택자), 배열로 반환
+        console.log(items);
+        for (let i = 0; i < items.length; i++) {
+          items[i].innerHTML = "<b>바뀐 문장!</b>"; // innerText와 차이는 안에 html 태그 포함 가능
+        }
+      }
+    </script>
+  </body>
+</html>

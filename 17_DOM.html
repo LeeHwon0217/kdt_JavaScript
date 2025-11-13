@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body>
+    <p id="greeting">안녕하세요!</p>
+    <button onclick="changeText()">텍스트 바꾸기</button>
+
+    <script>
+      function changeText() {
+        document.getElementById("greeting").innerText = "반가워요!"; // 아이디는 하나여서 element
+      }
+    </script>
+  </body>
+</html>

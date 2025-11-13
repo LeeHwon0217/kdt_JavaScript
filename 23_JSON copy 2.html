@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="profile"></div>
+
+    <script>
+      const user = {
+        name: "김사과",
+        age: 20,
+        address: {
+          // 개체의 객체는 .으로 접근해서 알아내면 된다
+          city: "서울",
+          zip: "12345",
+        },
+      };
+
+      const div = document.getElementById("profile");
+      div.innerHTML = `
+    <p>이름: ${user.name}</p>
+    <p>도시: ${user.address.city}</p>
+    <p>우편번호: ${user.address.zip}</p>
+  `;
+    </script>
+  </body>
+</html>

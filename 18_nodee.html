@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <p id="old">기존 문단</p>
+    </div>
+    <script>
+      const wrapper = document.getElementById("wrapper");
+      const oldNode = document.getElementById("old");
+
+      const newNode = document.createElement("p");
+      newNode.innerText = "새로운 문단입니다";
+
+      wrapper.replaceChild(newNode, oldNode); // 바뀌는게 다른 언어와 달리 뒤를 앞으로 바꾼다
+    </script>
+  </body>
+</html>
